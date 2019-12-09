@@ -14,6 +14,7 @@ import {
   Link
 } from "react-router-dom";
 import ArticlesFull from './pages/ArticleFull';
+import Login from './components/login';
 
 class App extends React.Component {
 constructor(props){
@@ -70,20 +71,12 @@ if(this.state.username == 'yassoub' && this.state.password == 'password'){
     return(
 <div className="container">
        {!this.state.loggedIn ? 
-     
-         <form   style={{margin: '20%'}} onSubmit={this.SignIn} >
-           {this.state.FalseCred ?   <div className='alert alert-danger'>Erreur false credentials</div> :""}
-              <div className="from-group">
-               <label>Username</label>
-                <input type="text" className="form-control" name="username" id="user" onChange={this.onchangeUsr} placeholder="username" />
-                </div>
-                <div className="from-group">
-                <label>Password</label>
-                <input type="password" className="form-control" name="password" id="pass" onChange={this.onchangePass} placeholder="password" />
-                </div>
-                <button disabled={this.state.username == "" || this.state.password ==  ""} className="btn btn-primary"  >Signin</button>
+       <div>
+                    {this.state.FalseCred ?   <div className='alert alert-danger'>Erreur false credentials</div> :""}
+                    <Login sub={this.SignIn} usr={this.onchangeUsr} pass={this.onchangePass} />
 
-          </form>
+       </div>
+      
            :  
            <Router>
                <Navbar  />

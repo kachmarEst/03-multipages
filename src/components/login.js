@@ -2,24 +2,29 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Login extends React.Component {
+  constructor(props){
+    super(props);
+    
+
+  }
+  
 
   render() {
  
     return (
-        <div className="container">
-            <form >
+      
+            <form style={{margin: '20%'}} onSubmit={this.props.sub} >
                 <div className="from-group">
-            <label for="user">Username</label>
-                <input type="text" className="form-control" name="username" id="user" placeholder="username" />
+            <label>Username</label>
+                <input type="text" className="form-control" onChange={this.props.usr} name="username" id="user" placeholder="username" />
                 </div>
                 <div className="from-group">
-                <label for="pass">Password</label>
-                <input type="password" className="form-control" name="password" id="pass" placeholder="password" />
+                <label>Password</label>
+                <input type="password" className="form-control" onChange={this.props.pass} name="password" id="pass" placeholder="password" />
                 </div>
-                <input type="button" className="btn btn-primary" value="Login" />
+                <button disabled={this.props.disabled} className="btn btn-primary"  >Signin</button>
 
             </form>
-        </div>
        
     );
   }
