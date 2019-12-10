@@ -25,9 +25,11 @@ this.state = {
 password:'',
  loggedIn : false,
  FalseCred : false,
- page:'home'
+ page:'home',
+ counting:false
 }
-
+let counts = 0;
+ 
 this.SignIn = this.SignIn.bind(this);
 this.onchangeUsr = this.onchangeUsr.bind(this);
 this.onchangePass = this.onchangePass.bind(this);
@@ -53,8 +55,8 @@ SignIn(e){
 if(this.state.username == 'yassoub' && this.state.password == 'password'){
   this.setState({
     loggedIn : true,
-    FalseCred: false
-    
+    FalseCred: false,
+    counting:true
 
   })
 
@@ -64,6 +66,13 @@ if(this.state.username == 'yassoub' && this.state.password == 'password'){
     
 
   })}
+  setTimeout(
+    function() {
+        this.setState({counting: false});
+    }
+    .bind(this),
+    4000
+);
 }
 
   render() {
@@ -80,7 +89,7 @@ if(this.state.username == 'yassoub' && this.state.password == 'password'){
            :  
            <Router>
                <Navbar  />
-               <div className="alert alert-success">Logged In successfully</div>
+              { this.state.counting ? <div className="alert alert-success">Logged In successfully</div> : ''}
 
            <Switch>
              <Route exact path='/' component={Home} />
