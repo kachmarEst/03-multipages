@@ -15,6 +15,7 @@ import {
 } from "react-router-dom";
 import ArticlesFull from './pages/ArticleFull';
 import Login from './components/login';
+import NotFound from './pages/notFound';
 
 class App extends React.Component {
 constructor(props){
@@ -97,7 +98,8 @@ if(this.state.username == 'yassoub' && this.state.password == 'password'){
              <Route exact path='/articles/:nom' component={ArticlesFull} />
 
              <Route exact path='/about' component={About} />
-    
+             <Route  component={NotFound} />
+
              </Switch>
        
             <div>           

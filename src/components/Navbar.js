@@ -7,7 +7,36 @@ import {
     Link
   } from "react-router-dom";
 class Navbar extends React.Component {
-
+constructor(props){
+  super(props);
+  this.state ={
+    home:true,
+    articles:false,
+    about:false
+  }
+  this.OnClick = this.OnClick.bind(this);
+}
+OnClick(e){
+  if(e.target.name == 'ha'){
+    this.setState({
+      home:true,
+      articles:false,
+      about:false
+    })
+  }else if(e.target.name == 'ar'){
+    this.setState({
+      articles:true,
+      home:false,
+      about:false
+    })
+  }else if(e.target.name == 'ab'){
+    this.setState({
+      about:true,
+      articles:false,
+      home:false,
+    })
+  }
+}
     render() {
         return (
 
@@ -18,14 +47,14 @@ class Navbar extends React.Component {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item active">
-                          <Link  class="nav-link"  to="/">Home <span class="sr-only">(current)</span></Link>
+                        <li class={this.state.home ? "nav-item active" :"nav-item"}>
+                          <Link  class="nav-link" name="ha"  onClick={this.OnClick}  to="/">Home <span class="sr-only">(current)</span></Link>
                         </li>
-                        <li class="nav-item">
-                          <Link  class="nav-link" to="/articles">Articles</Link>
+                        <li class={this.state.articles ? "nav-item active" :"nav-item"}>
+                          <Link  class="nav-link"  name="ar" onClick={this.OnClick}    to="/articles">Articles</Link>
                         </li>
-                        <li class="nav-item">
-                          <Link  class="nav-link"  to="/about">About</Link>
+                        <li class={this.state.about ? "nav-item active" :"nav-item"}>
+                          <Link  class="nav-link"   name="ab" onClick={this.OnClick}  to="/about">About</Link>
                         </li>                      
                     </ul>
                 </div>
@@ -36,3 +65,4 @@ class Navbar extends React.Component {
 }
 
 export default Navbar;
+// npx create-react-app projetname
