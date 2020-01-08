@@ -16,7 +16,7 @@ import {
 import ArticlesFull from './pages/ArticleFull';
 import Login from './components/login';
 import NotFound from './pages/notFound';
-
+import axios from 'axios'
 class App extends React.Component {
 constructor(props){
   super(props);
@@ -52,21 +52,34 @@ onchangePass(e){
 
 SignIn(e){
   e.preventDefault();
-
-if(this.state.username == 'yassoub' && this.state.password == 'password'){
+  const cred = {
+    username:this.state.username,
+    password:this.state.password
+  }
+axios.post('//localhost:5000/users/login',cred,{
+  headers:{
+    'Content-Type':'application/json',
+    'Accept':'application/json'
+  }
+})
+.then(res=>{
+  console.log(res.data)
   this.setState({
     loggedIn : true,
     FalseCred: false,
     counting:true
 
   })
-
-}else{
+})
+.catch(err=>{
+  console.log(err.response.data.msg);
   this.setState({
     FalseCred: true
-    
+  
+  })
+})
 
-  })}
+
   setTimeout(
     function() {
         this.setState({counting: false});
